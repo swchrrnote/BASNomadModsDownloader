@@ -29,40 +29,18 @@ else
 	
 	$pcvr=$false
 	Echo "No configuration file found. Let's set up a new one."
-	Echo "Are you running BONELAB on Windows / Steam / PCVR? Type 'y' for yes or 'n' for no."
-	if (User-Confirm "Download mods for Windows?")
-	{
-		$platf="windows"
-		$dest="$env:appdata\..\LocalLow\Stress Level Zero\BONELAB\Mods"
-		$pcvr=$true
-	}
-	else
-	{
-		Echo "Are you running BONELAB on Quest 2?"
-		if (User-Confirm "Download mods for android/quest?")
-		{
-			$platf="android"
-			$dest=(Get-Location).Path+"\mods"
-		}
-	}
-	if($platf -eq $null)
-	{
-		Echo "Sorry, there are no other supported platforms :("
-		Pause
-		Exit
-	}
+	
+	$platf="android"
+	$dest=(Get-Location).Path+"\questmods"
+		
 	
 	$unpack=User-Confirm "Do you wish to automatically unpack or install downloaded/updated mods?"
 	
 	if($unpack)
 	{
-		Echo "The default installation path is: $dest"
-		if($pcvr)
-		{
-			Echo "(this is the default location for your BONELAB mod folder)"
-		}
+		Echo "The default download path is: $dest"
 		
-		if(-not(User-Confirm "Install/unpack mods to that location?"))
+		if(-not(User-Confirm "Install/unpack mods to this location?"))
 		{
 			Echo "Enter the path to the desired location."
 			$dest=Read-Host "Desired location"
@@ -110,7 +88,7 @@ if (-not(Test-Path zips))
 }
 
 Echo "Checking subscriptions..."
-$sublist_json=Invoke-WebRequest -UseBasicParsing -URI https://api.mod.io/v1/me/subscribed?game_id=3809 -Method GET -Headers @{"Authorization"="Bearer ${token}";"Accept"="application/json"}
+$sublist_json=Invoke-WebRequest -UseBasicParsing -URI https://api.mod.io/v1/me/subscribed?game_id=3852 -Method GET -Headers @{"Authorization"="Bearer ${token}";"Accept"="application/json"}
 $sublist=ConvertFrom-Json $sublist_json.Content
 
 $len=$sublist.data.length
@@ -123,7 +101,7 @@ for ($i = 0; $i -lt $len; $i++)
 	$subname=$sub.name
 	Echo "Requesting info about subscription $subname..."
 	[string]$modid=$sub.id
-	$mod_json=Invoke-WebRequest -UseBasicParsing -URI https://api.mod.io/v1/games/3809/mods/${modid}/files -Method GET -Headers @{"Authorization"="Bearer ${token}";"Accept"="application/json"}
+	$mod_json=Invoke-WebRequest -UseBasicParsing -URI https://api.mod.io/v1/games/3852/mods/${modid}/files -Method GET -Headers @{"Authorization"="Bearer ${token}";"Accept"="application/json"}
 	$mod=ConvertFrom-Json $mod_json.Content
 	
 	# Filter mod files based on platform
