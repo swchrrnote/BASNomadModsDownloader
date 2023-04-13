@@ -1,6 +1,6 @@
 # BASNomadModsDownloader
 
-A simple PowerShell script to automatically download all the mods you subscribed to on mod.io.
+A simple PowerShell script to automatically download all the Blade and Sorcery: Nomad mods you subscribed to on mod.io.
 
 ## Usage
 
