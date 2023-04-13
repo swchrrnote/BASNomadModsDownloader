@@ -20,3 +20,5 @@ When you run it a window should pop up where it'll tell you how many subscriptio
 If you re-run the script at a later date, it will check your subscriptions for updates and it'll only download mods from new subscriptions or mods which have been updated.
 
 After downloading your mods, and if you let the script extract to the questmods folder, then you can copy all the folders inside the questmods folder into your BAS: Nomad mod folder on your Quest.
+
+Many thanks to @My-bones-work for their script!
