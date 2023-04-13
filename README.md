@@ -21,4 +21,4 @@ If you re-run the script at a later date, it will check your subscriptions for u
 
 After downloading your mods, and if you let the script extract to the questmods folder, then you can copy all the folders inside the questmods folder into your BAS: Nomad mod folder on your Quest.
 
-Many thanks to @My-bones-work for their script!
+Many thanks to My-bones-work for their script! The original repository can be found in: https://github.com/My-bones-work/BoneLabModsDownloader
